@@ -177,13 +177,102 @@ public class BeanPlay extends Application {
 			}
 		});
 	}
-	
-		//Method
+
+	//Method
 	public void gameTime() {
 
 		//Create the ball and add in the pane
 		Circle ball = new Circle(270, 90, 6);
 		pane.getChildren().add(ball);
+
+		//Data field
+		double[] as = new double[7];
+		double[] x = new double[8];
+		double[] y = new double[8];
+		x[0] = 270;
+		y[0] = 102;
+		SecureRandom ballAs = new SecureRandom();
+
+		//Make the balls have color
+		SecureRandom red = new SecureRandom();
+		SecureRandom green = new SecureRandom();
+		SecureRandom blue = new SecureRandom();
+		ball.setFill(new Color ((red.nextInt(10) + 1) * 0.1, (green.nextInt(10) + 1) * 0.1, (blue.nextInt(10) + 1) * 0.1, 1));
+
+		//Create random numbers
+		for (int a = 0; a < 7; a++) {
+			as[a] = ballAs.nextInt(2);
+		}
+
+		//Create a path
+		for (int a = 0; a < 7; a++) {
+			if (as[a] == 0 && a != 6) {
+				x[a + 1] = x[a] - 30;
+				y[a + 1] = 102 + (a + 1) * 60;
+			}
+			else if (as[a] == 1 && a != 6) {
+				x[a + 1] = x[a] + 30;
+				y[a + 1] = 102 + (a + 1) * 60;
+			}
+
+			if (a == 6) {
+				if (as[a] == 0) {
+					x[a + 1] = x[a] - 30;
+				}
+				else if (as[a] == 1) {
+					x[a + 1] = x[a] + 30;
+				}
+
+				if (x[a + 1] == 60) {
+					y[a + 1] = (102 + a * 60 + 114) - one * 12;
+					one++;
+				}
+				else if (x[a + 1] == 120) {
+					y[a + 1] = (102 + a * 60 + 114) - two * 12;
+					two++;
+				}
+				else if (x[a + 1] == 180) {
+					y[a + 1] = (102 + a * 60 + 114) - three * 12;
+					three++;
+				}
+				else if (x[a + 1] == 240) {
+					y[a + 1] = (102 + a * 60 + 114) - four * 12;
+					four++;
+				}
+				else if (x[a + 1] == 300) {
+					y[a + 1] = (102 + a * 60 + 114) - five * 12;
+					five++;
+				}
+				else if (x[a + 1] == 360) {
+					y[a + 1] = (102 + a * 60 + 114) - six * 12;
+					six++;
+				}
+				else if (x[a + 1] == 420) {
+					y[a + 1] = (102 + a * 60 + 114) - seven * 12;
+					seven++;
+				}
+				else if (x[a + 1] == 480) {
+					y[a + 1] = (102 + a * 60 + 114) - eight * 12;
+					eight++;
+				}
+			}
+		}
+		
+		
+		//Create a polyline
+		Polyline polyline = new Polyline();
+		
+		//Draw the path
+		polyline.getPoints().addAll(270.0, 90.0, 270.0, 102.0);
+		for (int a = 0; a < 8; a++) {
+			polyline.getPoints().addAll(x[a], y[a]);
+		}
+		
+		//Move the ball
+		PathTransition pathtransition = new PathTransition();
+		pathtransition.setDuration(Duration.millis(4000));
+		pathtransition.setPath(polyline);
+		pathtransition.setNode(ball);
+		pathtransition.play();
 	}
-}
 }
