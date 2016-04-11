@@ -8,5 +8,7 @@ public class TestBeanPlay {
 	//Main method
 	public static void main(String[] args) {
 
+		//Call the BeanPlay class
+		Application.launch(BeanPlay.class, args);
 	}
 }
