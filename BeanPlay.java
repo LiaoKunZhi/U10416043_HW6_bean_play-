@@ -21,6 +21,16 @@ public class BeanPlay extends Application {
 	//Create a new pane
 	Pane pane = new Pane();
 
+	//Data field
+	private static int one = 0;
+	private static int two = 0;
+	private static int three = 0;
+	private static int four = 0;
+	private static int five = 0;
+	private static int six = 0;
+	private static int seven = 0;
+	private static int eight = 0;
+
 	@Override
 
 	//Method
@@ -158,5 +168,22 @@ public class BeanPlay extends Application {
 
 		//Show the stage
 		primaryStage.show();
+
+		//Start the game when user press the space
+		pane.requestFocus();
+		pane.setOnKeyPressed (e -> {
+			if (e.getCode() == KeyCode.SPACE) {
+				gameTime();
+			}
+		});
 	}
+	
+		//Method
+	public void gameTime() {
+
+		//Create the ball and add in the pane
+		Circle ball = new Circle(270, 90, 6);
+		pane.getChildren().add(ball);
+	}
+}
 }
